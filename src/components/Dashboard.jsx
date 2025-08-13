@@ -197,7 +197,7 @@ const Dashboard = () => {
                 color: 'black',
                 fontSize: '16px',
                 fontWeight: '500'
-              }}>
+              }}>c
                 Add Transaction
               </span>
               
