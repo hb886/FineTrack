@@ -1,130 +1,176 @@
-
-import React, { useState } from 'react';
-import { Filter, Calendar, TrendingUp, ArrowUpRight } from 'lucide-react';
+import React, { useContext, useState } from "react";
+import { Edit3, Trash2, Plus, Download, Filter } from "lucide-react";
+import { MyContext } from "./context";
 
 const TransactionTable = () => {
+  const containerStyle = {
+    width: "100%",
+    background: "white",
+    borderRadius: "16px",
+    boxShadow: "0 4px 20px rgba(0, 0, 0, 0.08)",
+    border: "1px solid #e5e7eb",
+    overflow: "hidden",
+  };
+
   const headerStyle = {
-    padding: '16px',
-    borderBottom: '1px solid #e5e7eb',
-    fontSize: '14px',
-    fontWeight: '600',
-    color: '#374151'
+    background: "linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%)",
+    padding: "20px 24px",
+    borderBottom: "2px solid #e2e8f0",
+    display: "flex",
+    justifyContent: "space-between",
+    alignItems: "center",
+    flexWrap: "wrap",
+    gap: "16px",
   };
 
-  const cellStyle = {
-    padding: '16px',
-    borderBottom: '1px solid #f3f4f6',
-    fontSize: '14px',
-    color: '#374151'
+
+  
+  const buttonStyle = {
+    display: "flex",
+    alignItems: "center",
+    gap: "8px",
+    padding: "10px 16px",
+    borderRadius: "10px",
+    border: "none",
+    cursor: "pointer",
+    fontSize: "14px",
+    fontWeight: "500",
+    transition: "all 0.2s ease"
   };
 
-  // Sample transaction data - you can replace this with your actual data
-  const transactions = [
-    {
-      id: 1,
-      date: '18/7/2025',
-      description: 'Home',
-      category: 'Food',
-      amount: -100,
-      categoryColor: '#fef2f2',
-      categoryTextColor: '#991b1b'
-    },
-    {
-      id: 2,
-      date: '20/7/2025',
-      description: 'Rent',
-      category: 'Living',
-      amount: -80,
-      categoryColor: '#fef2f2',
-      categoryTextColor: '#991b1b'
-    },
-    {
-      id: 3,
-      date: '23/7/2025',
-      description: 'Gym',
-      category: 'Health',
-      amount: -50,
-      categoryColor: '#fef2f2',
-      categoryTextColor: '#991b1b'
-    },
-    {
-      id: 4,
-      date: '25/7/2025',
-      description: 'Salary',
-      category: 'Income',
-      amount: 3500,
-      categoryColor: '#dcfce7',
-      categoryTextColor: '#059669'
-    },
-    {
-      id: 5,
-      date: '27/7/2025',
-      description: 'Groceries',
-      category: 'Food',
-      amount: -75,
-      categoryColor: '#fef2f2',
-      categoryTextColor: '#991b1b'
-    }
-  ];
+  const primaryButtonStyle = {
+    ...buttonStyle,
+    background: "linear-gradient(135deg, #3b82f6 0%, #2563eb 100%)",
+    color: "white",
+    boxShadow: "0 2px 8px rgba(59, 130, 246, 0.3)"
+  };
+
+  const secondaryButtonStyle = {
+    ...buttonStyle,
+    background: "white",
+    color: "#6b7280",
+    border: "1px solid #d1d5db"
+  };
+
+    const tableStyle = {
+    width: "100%",
+    borderCollapse: "collapse",
+    fontSize: "14px"
+  };
+
+  const thStyle = {
+    padding: "16px 20px",
+    borderBottom: "2px solid #e2e8f0",
+    background: "#f8fafc",
+    fontWeight: "600",
+    color: "#374151",
+    textAlign: "left",
+    fontSize: "13px",
+    textTransform: "uppercase",
+    letterSpacing: "0.05em",
+    width:"100vw"
+  };
+
+
+  const {entry} = useContext(MyContext)
+
+  console.log("entry", entry);
+  
 
   return (
-    <div style={{ overflowX: 'auto' }}>
-      <table style={{
-        width: "100%",
-        textAlign: "left",
-        border: "1px solid #e5e7eb",
-        borderCollapse: "collapse",
-        borderRadius: "8px",
-        overflow: "hidden"
+    <div style={containerStyle}>
+      {/* Header */}
+      <div style={headerStyle}>
+        <div>
+          <h2
+            style={{
+              margin: "0 0 4px 0",
+              fontSize: "20px",
+              fontWeight: "700",
+              color: "#111827",
+            }}
+          >
+            Transaction History
+          </h2>
+          <p
+            style={{
+              margin: "0",
+              color: "#6b7280",
+              fontSize: "14px",
+            }}
+          >
+            Manage your financial transactions
+          </p>
+        </div>
+
+        <div style={{ display: "flex", gap: "12px", flexWrap: "wrap" }}>
+          <button
+            style={secondaryButtonStyle}
+          >
+            <Filter size={16} />
+            Filter
+          </button>
+          <button
+            style={secondaryButtonStyle}
+          >
+            <Download size={16} />
+            Export
+          </button>
+          <button
+            style={primaryButtonStyle}
+          >
+            <Plus size={16} />
+            Add Transaction
+          </button>
+        </div>
+
+             <div style={{
+        // background: getTotalBalance() >= 0 
+        //   ? "linear-gradient(135deg, #dcfce7 0%, #bbf7d0 100%)" 
+        //   : "linear-gradient(135deg, #fef2f2 0%, #fecaca 100%)",
+        background:"#dcfce7",
+        padding: "16px 24px",
+        borderBottom: "1px solid #e5e7eb",
+        display: "flex",
+        justifyContent: "space-between",
+        alignItems: "center",
+        width:"100%"
       }}>
-        <thead>
-          <tr style={{ backgroundColor: "#f9fafb" }}>
-            <th style={headerStyle}>Date</th>
-            <th style={headerStyle}>Description</th>
-            <th style={headerStyle}>Category</th>
-            <th style={headerStyle}>Amount</th>
-          </tr>
-        </thead>
-        <tbody>
-          {transactions.map((transaction, index) => (
-            <tr 
-              key={transaction.id} 
-              style={{ 
-                backgroundColor: index % 2 === 0 ? "white" : "#fafafa",
-                transition: 'background-color 0.2s'
-              }}
-              onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#f0f9ff'}
-              onMouseLeave={(e) => e.currentTarget.style.backgroundColor = index % 2 === 0 ? "white" : "#fafafa"}
-            >
-              <td style={cellStyle}>{transaction.date}</td>
-              <td style={cellStyle}>{transaction.description}</td>
-              <td style={cellStyle}>
-                <span style={{
-                  display: 'inline-block',
-                  padding: '4px 12px',
-                  backgroundColor: transaction.categoryColor,
-                  color: transaction.categoryTextColor,
-                  borderRadius: '20px',
-                  fontSize: '12px',
-                  fontWeight: '500'
-                }}>
-                  {transaction.category}
-                </span>
-              </td>
-              <td style={{
-                ...cellStyle, 
-                color: transaction.amount < 0 ? '#dc2626' : '#059669', 
-                fontWeight: '600'
-              }}>
-                {transaction.amount < 0 ? `-$${Math.abs(transaction.amount)}` : `+$${transaction.amount}`}
-              </td>
+        <span style={{ 
+          fontWeight: "600", 
+          color: "#374151",
+          fontSize: "14px"
+        }}>
+          Total Balance:
+        </span>
+        <span style={{ 
+          fontSize: "18px", 
+          fontWeight: "700", 
+          // color: getTotalBalance() >= 0 ? "#059669" : "#dc2626"
+          color:"059669"
+        }}>
+          "dsdsdsdsd"
+        </span>
+      </div>
+
+       <div style={{ overflowX: "auto" }}>
+        <table style={tableStyle}>
+          <thead>
+            <tr>
+              <th style={thStyle}>Date</th>
+              <th style={thStyle}>Description</th>
+              <th style={thStyle}>Category</th>
+              <th style={thStyle}>Amount</th>
+              <th style={thStyle}>Actions</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+        </table>
+        </div>
+
+
+      </div>
     </div>
   );
 };
 
-
-export default TransactionTable
+export default TransactionTable;
