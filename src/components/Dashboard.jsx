@@ -29,7 +29,11 @@ const Dashboard = () => {
     setTempBalance,
     tempIncome,
     setTempIncome,
+    totalIncome, 
+    totalExpenses,
+    savingsRate
   } = useContext(MyContext);
+  
 
 
   const [newTransaction, setNewTransaction] = useState({
@@ -103,11 +107,11 @@ const Dashboard = () => {
             <div>
               <IncomeContainer>
                 <Label>Monthly Income</Label>
-                <Amount type="income">${monthlyIncome}</Amount>
+                <Amount type="income">${totalIncome}</Amount>
               </IncomeContainer>
               <ExpenseContainer>
                 <Label>Monthly Expenses</Label>
-                <Amount type="expense">${monthlyExpenses}</Amount>
+                <Amount type="expense">${totalExpenses}</Amount>
               </ExpenseContainer>
             </div>
             <NetDifferenceContainer>
@@ -136,7 +140,7 @@ const Dashboard = () => {
             <SavingsDetails>
               <SavingsRow>
                 <SavingsLabel>Current Savings</SavingsLabel>
-                <SavingsValue>$6,500</SavingsValue>
+                <SavingsValue>{savingsRate}%</SavingsValue>
               </SavingsRow>
               <SavingsRow>
                 <SavingsLabel>Goal</SavingsLabel>

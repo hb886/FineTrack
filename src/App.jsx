@@ -4,6 +4,7 @@ import Demo from "./components/Demo";
 import Dashboard from "./components/Dashboard";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Transactions from "./components/Transactions";
+import Analytics from "./components/Analytics";
 
 
 const App = () => {
@@ -22,6 +23,7 @@ const App = () => {
             <Routes>
               <Route path="/" element={<Dashboard />} />
               <Route path="/transactions" element={<Transactions />} />
+              <Route path="/analytics" element={<Analytics />} />
             </Routes>
           </div>
         </div>
