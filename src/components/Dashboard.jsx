@@ -53,7 +53,7 @@ const Dashboard = () => {
         <Header>
           <div>
             <HeaderTitle>Dashboard</HeaderTitle>
-            <HeaderSubtitle>Welcome back! Here's your financial overview.</HeaderSubtitle>
+            <HeaderSubtitle>I've added some demo data for you to explore — feel free to delete it and add your own.</HeaderSubtitle>
           </div>
         </Header>
 
