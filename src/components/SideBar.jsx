@@ -20,19 +20,13 @@ const SideBar = () => {
     { id: "transactions", path: "/transactions", icon: List, label: "Transactions" },
     { id: "analytics", path: "/analytics", icon: BarChart3, label: "Analytics" },
     { id: "budget", path: "/budget", icon: PieChart, label: "Budget" },
-    { id: "cards", path: "/cards", icon: CreditCard, label: "Cards" },
-  ]
-
-  const bottomMenuItems = [
-    { id: "profile", path: "/profile", icon: User, label: "Profile" },
-    { id: "settings", path: "/settings", icon: Settings, label: "Settings" },
   ]
 
   const sidebarStyle = {
     background: "linear-gradient(180deg, #ffffff 0%, #f8fafc 100%)",
     width: sideBarClose ? "70px" : "280px",
     minWidth: sideBarClose ? "70px" : "280px",
-    height: "100vh",
+     height: "calc(100vh - 120px)",
     padding: sideBarClose ? "16px 8px" : "24px 16px",
     transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
     borderRight: "1px solid #e2e8f0",

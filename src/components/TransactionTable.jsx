@@ -289,7 +289,7 @@ const TransactionTable = () => {
             border: "2px solid #bae6fd",
             borderRadius: "16px",
             padding: "24px",
-            marginBottom: "24px"
+            marginBottom: "24px",
           }}>
             <h3 style={{ margin: "0 0 16px 0", color: "#0369a1", fontSize: "16px", fontWeight: "600" }}>
               Add New Transaction
@@ -399,8 +399,9 @@ const TransactionTable = () => {
                     ...tdStyle,
                     textAlign: "center",
                     color: "#6b7280",
-                    fontStyle: "italic",
-                    padding: "40px"
+                    // fontStyle: "italic",
+                    padding: "40px",
+                    background:"green"
                   }}>
                     No transactions found matching your criteria
                   </td>
@@ -466,3 +467,4 @@ const TransactionTable = () => {
 
 
 export default TransactionTable;
+

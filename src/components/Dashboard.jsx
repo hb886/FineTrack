@@ -31,10 +31,12 @@ const Dashboard = () => {
     setTempIncome,
     totalIncome, 
     totalExpenses,
-    savingsRate
+    savingsRate,
+    netBalance
   } = useContext(MyContext);
-  
 
+
+  
 
   const [newTransaction, setNewTransaction] = useState({
     description: "",
@@ -81,8 +83,8 @@ const Dashboard = () => {
                 autoFocus
               />
             ) : (
-              <BalanceAmount onClick={() => setIsEditingBalance(true)}>
-                $ {currentBalance}
+              <BalanceAmount>
+                ${totalIncome.toFixed(2)}
               </BalanceAmount>
             )}
           </BalanceCard>
@@ -117,7 +119,7 @@ const Dashboard = () => {
             <NetDifferenceContainer>
               <NetDifferenceHeader>
                 <NetDifferenceLabel>Net Difference</NetDifferenceLabel>
-                <NetDifferenceAmount>+$2,069.50</NetDifferenceAmount>
+                <NetDifferenceAmount>${netBalance.toFixed(2)}</NetDifferenceAmount>
               </NetDifferenceHeader>
               <ChangeContainer>
                 <ArrowUpRight size={16} style={{ color: "#10b981" }} />
@@ -140,7 +142,7 @@ const Dashboard = () => {
             <SavingsDetails>
               <SavingsRow>
                 <SavingsLabel>Current Savings</SavingsLabel>
-                <SavingsValue>{savingsRate}%</SavingsValue>
+                <SavingsValue>${netBalance.toFixed(2)}</SavingsValue>
               </SavingsRow>
               <SavingsRow>
                 <SavingsLabel>Goal</SavingsLabel>
@@ -148,7 +150,7 @@ const Dashboard = () => {
               </SavingsRow>
               <RemainingContainer>
                 <span>Remaining</span>
-                <SavingsValue>$3,500</SavingsValue>
+                <SavingsValue>${netBalance.toFixed(2)}</SavingsValue>
               </RemainingContainer>
             </SavingsDetails>
           </SavingsCard>

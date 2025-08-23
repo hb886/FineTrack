@@ -13,7 +13,7 @@ const Demo = () => {
 
   const containerStyle = {
     maxWidth: '1200px',
-    margin: '0 auto',
+    // margin: '0 auto',
     padding: '16px 24px',
     display: 'flex',
     alignItems: 'center',
